@@ -23,7 +23,7 @@ function Book(props) {
                 <p>{props.libreria.libros[props.index].descripcion}</p>
                 <hr />
                 <div className="stock">
-                    <p>{stock}</p>
+                    <p>Stock: {stock}</p>
                     <button onClick={substractStock} id={"btn_" + props.id}>Click me!</button>
                 </div>
             </div>
