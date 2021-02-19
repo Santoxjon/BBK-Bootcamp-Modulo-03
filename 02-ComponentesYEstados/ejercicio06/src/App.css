@@ -1,13 +1,16 @@
-body{
+body {
   display: flex;
   justify-content: center;
+  background-color: #252121;
 }
 
 .App {
-
   text-align: center;
-  width: 700px;
-  min-height: 100vh;
+  width: 990px;
+  height: 100vh;
+  background-color: #c0a8a8;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
 }
 
 .App-logo {
@@ -45,14 +48,96 @@ body{
   }
 }
 
-
-
 header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 700px;
+  margin: 0 auto;
+  padding: 5px 0;
 }
 
-header>img{
-  width: 150px;
+.left-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}
+
+header h1 {
+  margin: auto;
+}
+
+header img {
+  width: 75px;
+  border-radius: 50%;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+main::-webkit-scrollbar-track {
+  background-color: #dadada;
+}
+
+main::-webkit-scrollbar {
+  width: 7.5px;
+  background-color: #F5F5F5;
+}
+
+main::-webkit-scrollbar-thumb {
+  background-color: #680000;
+}
+
+main::-webkit-scrollbar-thumb:vertical:hover {
+  background-color: #940000;
+}
+
+.book {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 10px;
+  background-color: #e2e2e2;
+  padding: 10px;
+  margin: 0 5px;
+  border-radius: 5px;
+}
+
+h1, h2 {
+  margin: 0;
+}
+
+.book p {
+  text-align: justify;
+  margin: 10px 0;
+}
+
+.left {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.stock {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+}
+
+footer {
+  padding: 15px 0;
+}
+
+footer * {
+  margin: 0px;
 }
