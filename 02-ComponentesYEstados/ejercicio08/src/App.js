@@ -3,14 +3,15 @@ import './App.css';
 import React, { useState, useEffect } from 'react';
 
 let matrix = [
-  ["", "", ""],
-  ["", "", ""],
-  ["", "", ""]
+  [],
+  [],
+  []
 ];
 
 function App() {
 
   let [turn, setTurn] = useState(0);
+  let [winner, setWinner] = useState("");
 
   let [btn00, setBtn00] = useState("");
   let [btn01, setBtn01] = useState("");
@@ -24,27 +25,16 @@ function App() {
 
   function checkWin() {
     let c = turn % 2 === 0 ? "x" : "o";
-    if (matrix[0][0] === c && matrix[0][1] === c && matrix[0][2] === c) {
-      return true;
-    } else if (matrix[1][0] === c && matrix[1][1] === c && matrix[1][2] === c) {
-      return true;
-    }
-    else if (matrix[2][0] === c && matrix[2][1] === c && matrix[2][2] === c) {
-      return true;
-    }
-    else if (matrix[0][0] === c && matrix[1][0] === c && matrix[2][0] === c) {
-      return true;
-    }
-    else if (matrix[0][1] === c && matrix[1][1] === c && matrix[2][1] === c) {
-      return true;
-    }
-    else if (matrix[0][2] === c && matrix[1][2] === c && matrix[2][2] === c) {
-      return true;
-    }
-    else if (matrix[0][0] === c && matrix[1][1] === c && matrix[2][2] === c) {
-      return true;
-    }
-    else if (matrix[2][0] === c && matrix[1][1] === c && matrix[0][2] === c) {
+    if (
+      (matrix[0][0] === c && matrix[0][1] === c && matrix[0][2] === c) ||
+      (matrix[1][0] === c && matrix[1][1] === c && matrix[1][2] === c) ||
+      (matrix[2][0] === c && matrix[2][1] === c && matrix[2][2] === c) ||
+      (matrix[0][0] === c && matrix[1][0] === c && matrix[2][0] === c) ||
+      (matrix[0][1] === c && matrix[1][1] === c && matrix[2][1] === c) ||
+      (matrix[0][2] === c && matrix[1][2] === c && matrix[2][2] === c) ||
+      (matrix[0][0] === c && matrix[1][1] === c && matrix[2][2] === c) ||
+      (matrix[2][0] === c && matrix[1][1] === c && matrix[0][2] === c)
+    ) {
       return true;
     }
     return false;
@@ -53,6 +43,7 @@ function App() {
   function draw(e) {
     e.target.disabled = "true";
     let str = turn % 2 === 0 ? "x" : "o";
+    e.target.classList.add(turn % 2 === 0 ? "j1" : "j2");
     switch (e.target.id.substr(3)) {
       case "00":
         setBtn00(str);
@@ -96,7 +87,8 @@ function App() {
     setTimeout(function () {
       if (checkWin()) {
         Array.from(document.getElementsByTagName('button')).map(button => button.disabled = true);
-        alert("Ha ganado -> Jugador" + ((turn % 2) + 1));
+        setWinner("Jugador\n" + ((turn % 2) + 1))
+        document.getElementById("winner").style.visibility = "visible";
       }
     }, 0);
   }
@@ -104,40 +96,43 @@ function App() {
   return (
     <div className="App">
       <div>
-        <p>{turn % 2 === 0 ? "Jugador 1" : "Jugador 2"}</p>
-        <div className="row">
-          <div className="column0">
-            <button id="btn00" onClick={e => draw(e)}>{btn00}</button>
+        <p><b>{turn % 2 === 0 ? "Jugador 1" : "Jugador 2"}</b></p>
+        <div>
+          <div className="row">
+            <div className="column0">
+              <button id="btn00" onClick={e => draw(e)}>{btn00}</button>
+            </div>
+            <div className="column1">
+              <button id="btn01" onClick={e => draw(e)}>{btn01}</button>
+            </div>
+            <div className="column2">
+              <button id="btn02" onClick={e => draw(e)}>{btn02}</button>
+            </div>
           </div>
-          <div className="column1">
-            <button id="btn01" onClick={e => draw(e)}>{btn01}</button>
+          <div className="row">
+            <div className="column0">
+              <button id="btn10" onClick={e => draw(e)}>{btn10}</button>
+            </div>
+            <div className="column1">
+              <button id="btn11" onClick={e => draw(e)}>{btn11}</button>
+            </div>
+            <div className="column2">
+              <button id="btn12" onClick={e => draw(e)}>{btn12}</button>
+            </div>
           </div>
-          <div className="column2">
-            <button id="btn02" onClick={e => draw(e)}>{btn02}</button>
+          <div className="row">
+            <div className="column0">
+              <button id="btn20" onClick={e => draw(e)}>{btn20}</button>
+            </div>
+            <div className="column1">
+              <button id="btn21" onClick={e => draw(e)}>{btn21}</button>
+            </div>
+            <div className="column2">
+              <button id="btn22" onClick={e => draw(e)}>{btn22}</button>
+            </div>
           </div>
         </div>
-        <div className="row">
-          <div className="column0">
-            <button id="btn10" onClick={e => draw(e)}>{btn10}</button>
-          </div>
-          <div className="column1">
-            <button id="btn11" onClick={e => draw(e)}>{btn11}</button>
-          </div>
-          <div className="column2">
-            <button id="btn12" onClick={e => draw(e)}>{btn12}</button>
-          </div>
-        </div>
-        <div className="row">
-          <div className="column0">
-            <button id="btn20" onClick={e => draw(e)}>{btn20}</button>
-          </div>
-          <div className="column1">
-            <button id="btn21" onClick={e => draw(e)}>{btn21}</button>
-          </div>
-          <div className="column2">
-            <button id="btn22" onClick={e => draw(e)}>{btn22}</button>
-          </div>
-        </div>
+        <p id="winner">Ganador: {winner}</p>
       </div>
     </div>
   );

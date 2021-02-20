@@ -1,9 +1,9 @@
 .App {
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
+  background-color: silver;
 }
 
 .App-logo {
@@ -42,20 +42,52 @@
 }
 
 .App>div {
-  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 450px;
+  height: 450px;
+  background-color: rgb(245, 245, 245);
+  border-radius: 5px;
+}
+
+.App>div>div {
+  margin: 0 auto;
   display: grid;
   grid-template-rows: repeat(3, max-content);
-  gap: 10px;
+  gap: 5px;
+}
+
+p {
+  font-size: 2em;
+  margin: 0;
+  text-align: center;
+}
+
+p:first-child {
+  margin-bottom: 10px;
 }
 
 .row {
   display: grid;
   grid-template-columns: repeat(3, max-content);
-  gap: 10px;
+  gap: 5px;
 }
 
 button {
-  font-size: 3em;
+  font-size: 5em;
   width: 100px;
   height: 100px;
+}
+
+.j1:disabled {
+  color: crimson;
+}
+
+.j2:disabled {
+  color: navy;
+}
+
+#winner {
+  visibility: hidden;
 }
