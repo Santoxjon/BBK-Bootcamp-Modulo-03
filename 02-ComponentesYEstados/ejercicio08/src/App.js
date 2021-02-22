@@ -1,11 +1,10 @@
-import logo from './logo.svg';
 import './App.css';
 import React, { useState, useEffect } from 'react';
 
 let matrix = [
-  [],
-  [],
-  []
+  ["", "", ""],
+  ["", "", ""],
+  ["", "", ""]
 ];
 
 function App() {
@@ -84,19 +83,23 @@ function App() {
     }
     setTurn(turn + 1);
 
-    setTimeout(function () {
-      if (checkWin()) {
-        Array.from(document.getElementsByTagName('button')).map(button => button.disabled = true);
-        setWinner("Jugador\n" + ((turn % 2) + 1))
-        document.getElementById("winner").style.visibility = "visible";
-      }
-    }, 0);
+    console.table(matrix);
+
+
+    if (checkWin()) {
+      Array.from(document.getElementsByTagName('button')).map(button => button.disabled = true);
+      setWinner("Jugador\n" + ((turn % 2) + 1))
+      document.getElementById("winner").style.display = "block";
+      document.getElementById("player").style.display = "none";
+    }
+    document.getElementById("player").textContent = turn == 8 ? "TABLAS" : document.getElementById("player").textContent;
   }
 
   return (
     <div className="App">
       <div>
-        <p><b>{turn % 2 === 0 ? "Jugador 1" : "Jugador 2"}</b></p>
+        <p id="player"><b>{turn % 2 === 0 ? "Jugador 1" : "Jugador 2"}</b></p>
+        <p id="winner">Ganador: {winner}</p>
         <div>
           <div className="row">
             <div className="column0">
@@ -132,7 +135,6 @@ function App() {
             </div>
           </div>
         </div>
-        <p id="winner">Ganador: {winner}</p>
       </div>
     </div>
   );

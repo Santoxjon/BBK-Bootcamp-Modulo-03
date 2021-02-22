@@ -51,6 +51,10 @@
   border-radius: 5px;
 }
 
+.App>div>p {
+  margin-bottom: 20px;
+}
+
 .App>div>div {
   margin: 0 auto;
   display: grid;
@@ -62,10 +66,6 @@ p {
   font-size: 2em;
   margin: 0;
   text-align: center;
-}
-
-p:first-child {
-  margin-bottom: 10px;
 }
 
 .row {
@@ -89,5 +89,5 @@ button {
 }
 
 #winner {
-  visibility: hidden;
+  display: none;
 }
