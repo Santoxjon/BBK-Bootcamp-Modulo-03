@@ -44,10 +44,12 @@ const libreria = {
   ],
 };
 
+
+let randomNumber = Math.floor(Math.random() * libreria.libros.length);
+
 function App() {
   let [vip, setVip] = useState(libreria.usuario.vip);
   let [greetings, setGreetings] = useState("");
-  let randomNumber = Math.floor(Math.random() * libreria.libros.length);
 
   let books = libreria.libros;
   let bookList = books.map((book, index) =>
@@ -55,7 +57,7 @@ function App() {
   );
 
   function toVip() {
-    libreria.usuario.vip = vip ? false : true;
+    libreria.usuario.vip = !vip;
     setVip(libreria.usuario.vip);
     setGreetings(libreria.usuario.vip ? "Bienvenido de nuevo, " : "");
   }
