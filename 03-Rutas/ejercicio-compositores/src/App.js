@@ -1,56 +1,73 @@
 import './App.css';
-// PASO 1, PASO 2 import changeText from './script'
 import React, { useState } from 'react';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
+
+import DeleteComposer from './DeleteComposer';
+import ShowComposers from './ShowComposers';
 
 function App() {
-  const [composers, setComposers] = useState(['Wolfgang Amadeus Mozart', 'Ludwig van Beethoven', 'Johann Sebastian Bach']);
+  const [composers, setComposers] = useState(
+    [
+      {
+        nombre: 'Wolfgang Amadeus Mozart',
+        fecha: 1756,
+        canciones: ['Symphonie Nr 40', 'Don Giovanni']
+      },
+      {
+        nombre: 'Ludwig van Beethoven',
+        fecha: 1770,
+        canciones: ['Symphonie No.5', 'Piano SonataNo.32']
+      }, {
+        nombre: 'Johann Sebastian Bach',
+        fecha: 1685,
+        canciones: ['Vivace', 'Largo ma non tanto']
+      }
+    ]
+  );
+
+
   const [listItems, setListItems] = useState(composers.map(composer => {
-    return <li>{composer}</li>;
+    return <li>{composer.nombre}</li>;
   }));
-  const [vacio, setVacio] = useState("");
+  const [addInputText, setAddInputText] = useState("");
 
   function addComposer() {
-    let updated_composers = composers;
-    updated_composers.push(document.getElementById("text").value);
+    if (addInputText !== "") {
+      let updated_composers = composers;
+      let obj = { nombre: addInputText }
+      updated_composers.push(obj);
 
-    setComposers(updated_composers);
-    setListItems(composers.map(composer => <li>{composer}</li>));
+      setComposers(updated_composers);
+      setListItems(updated_composers.map(composer => <li>{composer.nombre}</li>));
 
-    document.getElementById("text").value = vacio;
+      setAddInputText("");
+    }
   }
 
-  function removeComposer() {
-    let updated_composers = composers;
-    let index = updated_composers.indexOf(document.getElementById("delete_input").value)
-    
-    if(index != -1) updated_composers.splice(index, 1);
-
-    setComposers(updated_composers);
-    setListItems(composers.map(composer => <li>{composer}</li>));
-
-    document.getElementById("text").value = vacio;
+  function changeAddInput(event) {
+    setAddInputText(event.target.value);
   }
 
   return (
-    <div className="App">
-      <h1>Compositores</h1>
-      <div>
-        {/* PASO 1: <input type="text" id="text" onInput={ e => changeText(e) } /> */}
-        <ul>
-          {listItems}
-        </ul>
-        <div className="group">
-          <input type="text" id="text" />
-          <button onClick={addComposer}>Añadir</button>
+    <BrowserRouter>
+      <div className="App">
+        <h1>Compositores</h1>
+        <Link to="/add">Añadir compositores</Link>
+        <Link to="/delete">Eliminar compositores</Link>
+        <div>
+          <ShowComposers listItems={listItems} />
+          <Route exact path="/add">
+            <div className="group">
+              <input type="text" id="text" value={addInputText} onInput={changeAddInput} />
+              <button onClick={addComposer}>Añadir</button>
+            </div>
+          </Route>
+          <Route exact path="/delete">
+            <DeleteComposer composers={composers} setComposers={setComposers} setListItems={setListItems} />
+          </Route>
         </div>
-        <br />
-        <div className="group">
-          <input type="text" id="delete_input" />
-          <button onClick={removeComposer}>Eliminar</button>
-        </div>
-        {/* PASO 1, PASO 2 <p id="p"></p> */}
       </div>
-    </div>
+    </BrowserRouter>
   );
 }
 
