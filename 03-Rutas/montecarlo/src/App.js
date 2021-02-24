@@ -1,43 +1,60 @@
-import logo from './logo.svg';
 import './App.css';
 
 import React, { useState } from 'react';
+import calc from './calcPi';
 
 function App() {
+  const [limit, setLimit] = useState(2500)
   const [dotCount, setDotCount] = useState(0)
+  const [dotCountRange, setDotCountRange] = useState(dotCount)
   const [dotsInside, setDotsInside] = useState(0)
-  const [pi, setPi] = useState(0)
+  const [pi, setPi] = useState(0);
+  const [disabledInput, setDisabledInput] = useState(false)
+  const [rangeDisplay, setRangeDisplay] = useState("hidden");
+  const [fastMode, setFastMode] = useState(false);
 
-  window.onload = () => {
-    let i = 0;
-    let j = 0;
-    const interval = setInterval(() => {
-      i++;
-      console.log(i);
-      setDotCount(i)
-      let punto = document.createElement("div");
-      punto.classList.add("punto");
-      document.getElementById("circle").append(punto);
+  function changeLimit(e) {
+    let limit = e.target.value;
+    setLimit(+limit);
+  }
 
-      let randomTop = ~~(Math.random() * 800);
-      let randomLeft = ~~(Math.random() * 800);
-      if (Math.pow(randomTop, 2) + Math.pow(randomLeft, 2) <= Math.pow(800, 2)) {
-        j++;
-        setDotsInside(j);
-        setPi(((j * 4) / i).toString().substr(0, 5));
-      }
+  function changeRange(e) {
+    setDotCountRange(e.target.value);
+    let dots = Array.from(document.getElementsByClassName("punto"));
+    dots.forEach(dot => {
+      dot.style.visibility = "hidden";
+    })
+    for (let i = 0; i < e.target.value; i++) {
+      dots[i].style.visibility = "visible";
+    }
+  }
 
-      punto.style.top = `${randomTop}px`;
-      punto.style.left = `${randomLeft}px`;
-      if (i === 10000) clearInterval(interval);
-    }, 0);
+  function changeModeFast(e) {
+    setFastMode(!fastMode);
+    e.target.checked = !fastMode;
   }
 
   return (
     <div className="App">
-      <h1>Puntos: {dotCount} | Puntos dentro: {dotsInside} | PI: {pi} </h1>
       <div>
-        <div id="circle"></div>
+        <form onSubmit={e => calc(e, setRangeDisplay, setDisabledInput, fastMode, setDotCount, setDotsInside, setPi, setDotCountRange, limit)} >
+          <label htmlFor="limit">Número de puntos a dibujar</label><span></span>
+          <input id="limit" type="number" min="2500" placeholder="Número de puntos a dibujar" value={limit} onInput={changeLimit} required />
+          <hr />
+          <input type="submit" value="Calcular" id="btn" disabled={disabledInput} />
+          <hr />
+          <div>
+            <label htmlFor="fast">Fast: </label>
+            <input type="checkbox" name="mode" id="fast" onChange={changeModeFast} />
+          </div>
+          <input type="range" min="0" max={dotsInside} value={dotCountRange} onChange={changeRange} style={{ visibility: rangeDisplay }} />
+        </form>
+      </div>
+      <div>
+        <h1>Puntos: {dotCount} | Dentro: {dotsInside} | π = {pi} </h1>
+        <div id="square">
+          <div id="circle"></div>
+        </div>
       </div>
     </div>
   );
