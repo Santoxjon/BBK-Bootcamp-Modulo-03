@@ -1,0 +1,96 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+p {
+  margin: 3px 0;
+  font-size: 5rem;
+}
+
+button {
+  font-size: 3rem;
+  width: 200px;
+}
+
+header>div {
+  display: grid;
+  grid-template-rows: 1fr;
+  gap: 5px;
+}
+
+header>div div, .results-div {
+  display: grid;
+  grid-template-columns: auto 350px auto;
+  gap: 50px;
+}
+.results-div {
+  grid-template-columns: repeat(3, 300px);
+  gap: 10px;
+}
+.results-div p:first-child {
+  text-align: left;
+}
+
+.results-div p:first-child {
+  text-align: left;
+}
+
+.results-div p:last-child {
+  text-align: right;
+}
+
+hr {
+  width: 100%;
+  border: dashed;
+}
+
+h1 {
+  filter: drop-shadow(0 0 0.2rem #fffeee);
+}
+
+a {
+  text-decoration: none;
+  color: #ff0000;
+  font-size: 3rem;
+  filter: drop-shadow(0 0 0.2rem crimson);
+}
+
+.result {
+  color: rgb(0, 175, 0);
+  filter: drop-shadow(0 0 0.2rem rgb(0, 175, 0));
+}
