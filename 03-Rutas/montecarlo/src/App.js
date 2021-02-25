@@ -38,8 +38,12 @@ function App() {
     <div className="App">
       <div>
         <form onSubmit={e => calc(e, setRangeDisplay, setDisabledInput, fastMode, setDotCount, setDotsInside, setPi, setDotCountRange, limit)} >
-          <label htmlFor="limit">Número de puntos a dibujar</label><span></span>
-          <input id="limit" type="number" min="2500" placeholder="Número de puntos a dibujar" value={limit} onInput={changeLimit} required />
+          <p><span>Puntos: </span><span>{dotCount}</span></p>
+          <p><span>Dentro: </span><span>{dotsInside}</span></p>
+          <p><span>π </span><span>{pi}</span></p>
+          <hr />
+          <label htmlFor="limit">Nº de puntos a dibujar</label><span></span>
+          <input id="limit" type="number" min="2500" max="25000" placeholder="Número de puntos a dibujar" value={limit} onInput={changeLimit} required />
           <hr />
           <input type="submit" value="Calcular" id="btn" disabled={disabledInput} />
           <hr />
@@ -51,7 +55,7 @@ function App() {
         </form>
       </div>
       <div>
-        <h1>Puntos: {dotCount} | Dentro: {dotsInside} | π = {pi} </h1>
+        {/* <h1>Puntos: {dotCount} | Dentro: {dotsInside} | π = {pi} </h1> */}
         <div id="square">
           <div id="circle"></div>
         </div>

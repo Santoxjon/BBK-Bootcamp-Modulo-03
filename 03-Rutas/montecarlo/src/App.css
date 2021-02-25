@@ -27,6 +27,7 @@ form {
   display: grid;
   grid-template-columns: 1fr;
   gap: 5px;
+  font-size: 1.5em;
 }
 
 form > div {
@@ -41,6 +42,10 @@ label {
 hr {
   width: 100%;
   margin: 0;
+}
+
+input {
+  font-size: 1.5rem;
 }
 
 h1 {
@@ -70,4 +75,12 @@ h1 {
   position: absolute;
   margin: 0;
   z-index: 35;
+}
+
+p {
+  margin: 0 0 5px 0;
+  display: flex;
+  justify-content: space-between;
+  /* font-size: 1.5em; */
+  color: #fffeee;
 }
