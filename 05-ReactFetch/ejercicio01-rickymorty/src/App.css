@@ -36,3 +36,39 @@
     transform: rotate(360deg);
   }
 }
+
+header>div {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+}
+
+.botonera {
+  display: grid;
+  grid-template-columns: repeat(2, 200px);
+  gap: 100px;
+}
+
+.botonera button {
+  padding: 20px 0;
+  border-radius: 5px;
+  border: 1px solid #fffeee;
+  background-color: green;
+  color: #fffeee;
+  font-size: 1.35em;
+  transition: all .15s;
+}
+
+.botonera button:hover {
+  background-color: rgb(122, 182, 32);
+  filter: drop-shadow(0 0 0.35rem green);
+}
+
+.botonera button:disabled {
+  background-color: black;
+  filter: drop-shadow(0 0 0 crimson);
+}
+
+h1{
+  margin: 0 0 5px 0;
+}
