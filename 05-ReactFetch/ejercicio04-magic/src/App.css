@@ -1,5 +1,16 @@
+#root {
+  background-color: rgb(63, 52, 75);
+  min-height: 100vh;
+}
+
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  margin: 2.5vh auto;
+  width: 1340px;
+  background-color: rgb(160, 142, 180);
+  padding: 0 25px;
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -35,4 +46,65 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+
+img {
+  object-fit: cover;
+  align-self: center;
+  border-radius: 11px;
+  max-width: 223px;
+  -webkit-transition: -webkit-transform .8s;
+  transition: transform .8s ;
+}
+
+img:hover {
+  -webkit-transform: rotate(360deg);
+  transform: rotate(360deg) scale(1.05);
+}
+
+p {
+  margin: 0px;
+  font-size: 1.5em;
+}
+
+.card-name {
+  font-size: 4em;
+  margin-bottom: 5px;
+  border-bottom: 1px white solid;
+}
+
+select, label {
+  align-self: center;
+  font-size: 1.5em;
+}
+
+select {
+  width: 300px;
+  margin-bottom: 15px;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+  padding: 10px 5px;
+  background-color: rgb(63, 52, 75);
+  border-radius: 5px;
+}
+
+.card-text {
+  padding: 10px 35px 10px 20px;
+  margin-left: 15px;
+  border-left: white solid 2px;
+  color: lightgray;
+}
+
+.card:not(:last-child) {
+  margin-bottom: 10px;
+}
+
+h1{
+  text-align: center;
+  color: rgb(63, 52, 75);
+  filter: drop-shadow(0 0 .3rem white);
 }
